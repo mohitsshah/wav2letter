@@ -27,7 +27,6 @@ RUN APT_INSTALL="apt install -y --no-install-recommends" && \
         g++ \
         libssl-dev \
         gnupg2 \
-        cmake \
         # for MKL
         apt-transport-https \
         # for libsndfile
@@ -42,24 +41,10 @@ RUN APT_INSTALL="apt install -y --no-install-recommends" && \
         # for receipts data processing
         sox && \
 # ==================================================================
-# KenLM https://github.com/kpu/kenlm
-# ------------------------------------------------------------------
-    cd /root && git clone https://github.com/kpu/kenlm.git && \
-    cd kenlm && git checkout e47088ddfae810a5ee4c8a9923b5f8071bed1ae8 && \
-    mkdir build && cd build && \
-    cmake .. && \
-    make -j$(nproc) && make -j$(nproc) install && \
-# ==================================================================
-# MKL https://software.intel.com/en-us/mkl
-# ------------------------------------------------------------------
-    cd /tmp && wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB && \
-    apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB && \
-    wget https://apt.repos.intel.com/setup/intelproducts.list -O /etc/apt/sources.list.d/intelproducts.list && \
-    sh -c 'echo deb https://apt.repos.intel.com/mkl all main > /etc/apt/sources.list.d/intel-mkl.list' && \
-    apt-get update && DEBIAN_FRONTEND=noninteractive $APT_INSTALL intel-mkl-64bit-2018.4-057 && \
-# ==================================================================
 # Upgrade CMake
 # ------------------------------------------------------------------
+    apt remove --purge cmake && \
+    hash -r && \
     cd /tmp && \
     wget https://github.com/Kitware/CMake/releases/download/v3.16.5/cmake-3.16.5.tar.gz && \
     tar -zxvf cmake-3.16.5.tar.gz && \
@@ -78,6 +63,22 @@ RUN APT_INSTALL="apt install -y --no-install-recommends" && \
     cmake -DCMAKE_BUILD_TYPE=Release -DgRPC_INSTALL=ON .. && \
     make -j2 && \
     make install && \
+# ==================================================================
+# KenLM https://github.com/kpu/kenlm
+# ------------------------------------------------------------------
+    cd /root && git clone https://github.com/kpu/kenlm.git && \
+    cd kenlm && git checkout e47088ddfae810a5ee4c8a9923b5f8071bed1ae8 && \
+    mkdir build && cd build && \
+    cmake .. && \
+    make -j$(nproc) && make -j$(nproc) install && \
+# ==================================================================
+# MKL https://software.intel.com/en-us/mkl
+# ------------------------------------------------------------------
+    cd /tmp && wget https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB && \
+    apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS-2019.PUB && \
+    wget https://apt.repos.intel.com/setup/intelproducts.list -O /etc/apt/sources.list.d/intelproducts.list && \
+    sh -c 'echo deb https://apt.repos.intel.com/mkl all main > /etc/apt/sources.list.d/intel-mkl.list' && \
+    apt-get update && DEBIAN_FRONTEND=noninteractive $APT_INSTALL intel-mkl-64bit-2018.4-057 && \
 # ==================================================================
 # config & cleanup
 # ------------------------------------------------------------------
