@@ -1,0 +1,1 @@
+cmake .. -DCMAKE_BUILD_TYPE=Release -DW2L_BUILD_LIBRARIES_ONLY=ON -DW2L_LIBRARIES_USE_CUDA=OFF -DW2L_BUILD_INFERENCE=ON -DCMAKE_PREFIX_PATH=/opt/intel/compilers_and_libraries_2020.2.258/mac/mkl -DCMAKE_CXX_FLAGS='-isystem /usr/local/include'

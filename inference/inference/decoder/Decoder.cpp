@@ -62,7 +62,13 @@ DecoderFactory::DecoderFactory(
 
   /* 3. Load language model. */
   if (!languageModelFile.empty()) {
-    lm_ = std::make_shared<KenLM>(languageModelFile.c_str(), wordMap_);
+    std::cout << "Starting to build LM" << std::endl;
+    if (!wordDictFile.empty()) {
+      lm_ = std::make_shared<KenLM>(languageModelFile.c_str(), wordMap_);
+    } else {
+      lm_ = std::make_shared<KenLM>(languageModelFile.c_str(), letterMap_);
+    }
+    std::cout << "Starting to build LM...DONE." << std::endl;
     if (!lm_) {
       throw std::invalid_argument("Could not load LM.");
     }
@@ -73,6 +79,7 @@ DecoderFactory::DecoderFactory(
   /* 4. Plant trie */
   if (!wordDictFile.empty()) {
     // Init Trie.
+    std::cout << "Making Trie..." << std::endl;
     trie_ = std::make_shared<Trie>(alphabetSize_, silence_);
     auto startState = lm_->start(false);
     for (const auto& it : lexicon) {
@@ -81,13 +88,12 @@ DecoderFactory::DecoderFactory(
       float score = -1;
       LMStatePtr dummyState;
       std::tie(dummyState, score) = lm_->score(startState, usrIdx);
-
       for (const auto& tokens : it.second) {
         auto tokensTensor = tkn2Idx(tokens, letterMap_, repetitionLabel_);
         trie_->insert(tokensTensor, usrIdx, score);
       }
     }
-
+    std::cout << "Making Trie...DONE." << std::endl;
     // Smearing.
     trie_->smear(smearing);
   }

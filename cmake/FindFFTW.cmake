@@ -19,11 +19,14 @@
 if( NOT FFTW_ROOT AND ENV{FFTWDIR} )
   set( FFTW_ROOT $ENV{FFTWDIR} )
 endif()
+message(STATUS "ROOT---" ${FFTW_ROOT})
 # Check if we can use PkgConfig
 find_package(PkgConfig)
 #Determine from PKG
 if( PKG_CONFIG_FOUND AND NOT FFTW_ROOT )
-  pkg_check_modules( PKG_FFTW QUIET "fftw3" )
+  pkg_check_modules( PKG_FFTW "fftw3" )
+  message(STATUS ${CMAKE_FIND_LIBRARY_SUFFIXES_SAV})
+  message(STATUS ${PKG_FFTW_LIBRARY_DIRS})
 endif()
 #Check whether to search static or dynamic libs
 set( CMAKE_FIND_LIBRARY_SUFFIXES_SAV ${CMAKE_FIND_LIBRARY_SUFFIXES} )
@@ -33,6 +36,7 @@ else()
   set( CMAKE_FIND_LIBRARY_SUFFIXES ${CMAKE_SHARED_LIBRARY_SUFFIX} )
 endif()
 if( FFTW_ROOT )
+  message(STATUS "FFTW ROOT FOUND")
   #find libs
   find_library(
     FFTW_LIB

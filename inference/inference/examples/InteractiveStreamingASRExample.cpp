@@ -100,11 +100,11 @@ DEFINE_string(
     "",
     "binary file containing ASG criterion transition parameters.");
 DEFINE_string(tokens_file, "tokens.txt", "text file containing tokens.");
-DEFINE_string(lexicon_file, "lexicon.txt", "text file containing lexicon.");
+DEFINE_string(lexicon_file, "", "text file containing lexicon.");
 DEFINE_string(silence_token, "_", "the token to use to denote silence");
 DEFINE_string(
     language_model_file,
-    "language_model.bin",
+    "",
     "binary file containing language module parameters.");
 DEFINE_string(
     decoder_options_file,
@@ -217,9 +217,9 @@ int main(int argc, char* argv[]) {
   {
     TimeElapsedReporter acousticLoadingElapsed("create decoder");
     decoderFactory = std::make_shared<DecoderFactory>(
-        GetInputFileFullPath(FLAGS_tokens_file),
-        GetInputFileFullPath(FLAGS_lexicon_file),
-        GetInputFileFullPath(FLAGS_language_model_file),
+        FLAGS_tokens_file,
+        FLAGS_lexicon_file,
+        FLAGS_language_model_file,
         transitions,
         SmearingMode::MAX,
         FLAGS_silence_token,

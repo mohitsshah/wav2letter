@@ -6,3 +6,7 @@ TARGETS
 __pycache__
 *.egg-info
 *.cpython-*.so
+model
+.idea
+.vscode
+.DS_Store

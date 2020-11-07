@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package wav2letter;
+
+service echo_bytestream {
+  rpc Search(stream Byte_Stream) returns (stream Trans_Stream);
+}
+
+message Byte_Stream {
+  bytes bstream = 1;
+  bool eos = 2;
+  int32 unique_id = 3;
+}
+
+message Trans_Stream {
+  string tstream = 1;
+  int32 start = 2;
+  int32 end = 3;
+}
+

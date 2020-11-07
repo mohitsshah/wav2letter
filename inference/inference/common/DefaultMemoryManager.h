@@ -10,7 +10,7 @@
 
 #include <functional>
 #include <memory>
-
+#include <string>
 #include "inference/common/MemoryManager.h"
 
 namespace w2l {
