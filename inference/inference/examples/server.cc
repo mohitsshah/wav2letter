@@ -171,11 +171,6 @@ class echo_bytestreamImpl final : public echo_bytestream::Service {
       }
       audioSampleCount += curChunkSize;
 
-      std::cout << chunk_start_ms << " " << chunk_end_ms << " " << str
-                << std::endl;
-
-      cout << "0" << endl;
-
       Trans_Stream* res_data = new Trans_Stream();
       res_data->set_tstream(str);
       res_data->set_start(chunk_start_ms);
