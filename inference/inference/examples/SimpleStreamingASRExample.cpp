@@ -102,7 +102,7 @@ DEFINE_string(
     "",
     "binary file containing ASG criterion transition parameters.");
 DEFINE_string(tokens_file, "tokens.txt", "text file containing tokens.");
-DEFINE_string(lexicon_file, "lexicon.txt", "text file containing lexicon.");
+DEFINE_string(lexicon_file, "", "text file containing lexicon.");
 DEFINE_string(
     input_audio_file,
     "",

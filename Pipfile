@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 grpcio = "*"
 grpcio-tools = "*"
+torch = "==1.2.0"
+packaging = "==19.1"
 
 [requires]
 python_version = "3.6"

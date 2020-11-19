@@ -165,6 +165,7 @@ std::vector<WordUnit> DecoderFactory::result2Words(
       }
       prevBlank = curBlank;
     }
+    std::cout << std::endl;
   }
 
   return wordPrediction;

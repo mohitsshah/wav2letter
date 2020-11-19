@@ -8,7 +8,7 @@
 # examples are at: /root/wav2letter/build/inference/inference/examples/
 # ------------------------------------------------------------------
 
-FROM w2l/w2l-server-base:latest
+FROM speech2words.azurecr.io/w2l/w2l-server-base:latest
 
 # Copy wav2letter src directory from host.
 RUN mkdir /root/wav2letter

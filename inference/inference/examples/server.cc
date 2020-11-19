@@ -61,12 +61,12 @@ DEFINE_string(
     transitions_file,
     "",
     "binary file containing ASG criterion transition parameters.");
-DEFINE_string(tokens_file, "tokens.txt", "text file containing tokens.");
-DEFINE_string(lexicon_file, "lexicon.txt", "text file containing lexicon.");
+DEFINE_string(tokens_file, "", "text file containing tokens.");
+DEFINE_string(lexicon_file, "", "text file containing lexicon.");
 DEFINE_string(silence_token, "_", "the token to use to denote silence");
 DEFINE_string(
     language_model_file,
-    "language_model.bin",
+    "",
     "binary file containing language module parameters.");
 DEFINE_string(
     decoder_options_file,
@@ -126,7 +126,7 @@ class echo_bytestreamImpl final : public echo_bytestream::Service {
       constexpr const int kChunkSizeMsec = 500;
 
       if (ignore_flag == false) {
-        inputAudioStream.ignore(kWavHeaderNumBytes);
+        // inputAudioStream.ignore(kWavHeaderNumBytes);
         ignore_flag = true;
       }
 
@@ -175,6 +175,7 @@ class echo_bytestreamImpl final : public echo_bytestream::Service {
       res_data->set_tstream(str);
       res_data->set_start(chunk_start_ms);
       res_data->set_end(chunk_end_ms);
+      res_data->set_uid(data.uid());
       stream->Write(*res_data);
 
       if (finish_flag == true) {
@@ -289,10 +290,12 @@ void RunServer(int argc, char* argv[]) {
   // Create Decoder
   {
     TimeElapsedReporter acousticLoadingElapsed("create decoder");
+    std::cout << GetInputFileFullPath(FLAGS_lexicon_file) << std::endl;
+
     decoderFactory = std::make_shared<DecoderFactory>(
-        GetInputFileFullPath(FLAGS_tokens_file),
-        GetInputFileFullPath(FLAGS_lexicon_file),
-        GetInputFileFullPath(FLAGS_language_model_file),
+        FLAGS_tokens_file,
+        FLAGS_lexicon_file,
+        FLAGS_language_model_file,
         transitions,
         SmearingMode::MAX,
         FLAGS_silence_token,
