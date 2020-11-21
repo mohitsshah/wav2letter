@@ -183,4 +183,8 @@ build_example(multithreaded_streaming_asr_example
   ${CMAKE_CURRENT_LIST_DIR}/MultithreadedStreamingASRExample.cpp)
 build_server(server
   ${CMAKE_CURRENT_LIST_DIR}/server.cc)
+build_server(stream_decoder
+  ${CMAKE_CURRENT_LIST_DIR}/StreamDecoder.cpp)
+build_server(utterance_decoder
+  ${CMAKE_CURRENT_LIST_DIR}/UtteranceDecoder.cpp)
 

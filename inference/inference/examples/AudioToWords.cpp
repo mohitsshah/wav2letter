@@ -87,6 +87,7 @@ void audioStreamToWordsStream(
     }
 
     /* Print results */
+
     const int chunk_start_ms =
         (audioSampleCount / (kAudioWavSamplingFrequency / 1000));
     const int chunk_end_ms =
@@ -99,11 +100,17 @@ void audioStreamToWordsStream(
         chunk_end_ms);
     audioSampleCount += curChunkSize;
 
-    // Consume and prune
+    // // Consume and prune
     const int nFramesOut = outputBuffer->size<float>() / nTokens;
     outputBuffer->consume<float>(nFramesOut * nTokens);
     decoder.prune(lookBack);
   }
+
+  // const std::vector<WordUnit>& wordUnits = decoder.getBestHypothesisInWords(lookBack);
+  // for (const auto& wordUnit : wordUnits) {
+  //   std::cout << wordUnit.word << " ";
+  // }
+  // std::cout << std::endl;
 }
 
 namespace {

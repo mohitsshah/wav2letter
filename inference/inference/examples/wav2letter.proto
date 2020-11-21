@@ -6,6 +6,25 @@ service echo_bytestream {
   rpc Search(stream Byte_Stream) returns (stream Trans_Stream);
 }
 
+service Transcriber {
+  rpc DecodeStream(stream DecodeInput) returns (stream DecodeOutput);
+  rpc DecodeUtterance (stream DecodeInput) returns (stream DecodeOutput);
+}
+
+message DecodeInput {
+  string uid = 1;
+  int32 seq = 2;
+  bool finished = 3;
+  bytes audio = 4;
+}
+
+message DecodeOutput {
+  string uid = 1;
+  int32 seq = 2;
+  bool finished = 3;
+  string text = 4;
+}
+
 message Byte_Stream {
   bytes bstream = 1;
   bool eos = 2;

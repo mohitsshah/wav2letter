@@ -64,3 +64,97 @@ class echo_bytestream(object):
             wav2letter__pb2.Trans_Stream.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class TranscriberStub(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.DecodeStream = channel.stream_stream(
+                '/wav2letter.Transcriber/DecodeStream',
+                request_serializer=wav2letter__pb2.DecodeInput.SerializeToString,
+                response_deserializer=wav2letter__pb2.DecodeOutput.FromString,
+                )
+        self.DecodeUtterance = channel.stream_stream(
+                '/wav2letter.Transcriber/DecodeUtterance',
+                request_serializer=wav2letter__pb2.DecodeInput.SerializeToString,
+                response_deserializer=wav2letter__pb2.DecodeOutput.FromString,
+                )
+
+
+class TranscriberServicer(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def DecodeStream(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DecodeUtterance(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_TranscriberServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'DecodeStream': grpc.stream_stream_rpc_method_handler(
+                    servicer.DecodeStream,
+                    request_deserializer=wav2letter__pb2.DecodeInput.FromString,
+                    response_serializer=wav2letter__pb2.DecodeOutput.SerializeToString,
+            ),
+            'DecodeUtterance': grpc.stream_stream_rpc_method_handler(
+                    servicer.DecodeUtterance,
+                    request_deserializer=wav2letter__pb2.DecodeInput.FromString,
+                    response_serializer=wav2letter__pb2.DecodeOutput.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'wav2letter.Transcriber', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class Transcriber(object):
+    """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def DecodeStream(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_stream(request_iterator, target, '/wav2letter.Transcriber/DecodeStream',
+            wav2letter__pb2.DecodeInput.SerializeToString,
+            wav2letter__pb2.DecodeOutput.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def DecodeUtterance(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_stream(request_iterator, target, '/wav2letter.Transcriber/DecodeUtterance',
+            wav2letter__pb2.DecodeInput.SerializeToString,
+            wav2letter__pb2.DecodeOutput.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

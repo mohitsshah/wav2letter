@@ -1,1 +1,7 @@
 cmake .. -DCMAKE_BUILD_TYPE=Release -DW2L_BUILD_LIBRARIES_ONLY=ON -DW2L_LIBRARIES_USE_CUDA=OFF -DW2L_BUILD_INFERENCE=ON -DCMAKE_PREFIX_PATH=/opt/intel/compilers_and_libraries_2020.2.258/mac/mkl -DCMAKE_CXX_FLAGS='-isystem /usr/local/include'
+
+./inference/inference/examples/server --input_files_base_path /Users/mohitshah/Others/w2l-models/tds_parallel_converted --tokens_file /Users/mohitshah/Others/w2l-models/tds_parallel_converted/tokens.txt --language_model_file /Users/mohitshah/Others/w2l-models/tds_parallel_converted/sentences_wp.bin
+
+python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. wav2letter.proto
+
+az acr build --registry speech2words --image w2l/w2l-server:latest -f Dockerfile-Server .

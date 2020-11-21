@@ -19,10 +19,116 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x10wav2letter.proto\x12\nwav2letter\">\n\x0b\x42yte_Stream\x12\x0f\n\x07\x62stream\x18\x01 \x01(\x0c\x12\x0b\n\x03\x65os\x18\x02 \x01(\x08\x12\x11\n\tunique_id\x18\x03 \x01(\x05\";\n\x0cTrans_Stream\x12\x0f\n\x07tstream\x18\x01 \x01(\t\x12\r\n\x05start\x18\x02 \x01(\x05\x12\x0b\n\x03\x65nd\x18\x03 \x01(\x05\x32R\n\x0f\x65\x63ho_bytestream\x12?\n\x06Search\x12\x17.wav2letter.Byte_Stream\x1a\x18.wav2letter.Trans_Stream(\x01\x30\x01\x62\x06proto3'
+  serialized_pb=b'\n\x10wav2letter.proto\x12\nwav2letter\"H\n\x0b\x44\x65\x63odeInput\x12\x0b\n\x03uid\x18\x01 \x01(\t\x12\x0b\n\x03seq\x18\x02 \x01(\x05\x12\x10\n\x08\x66inished\x18\x03 \x01(\x08\x12\r\n\x05\x61udio\x18\x04 \x01(\x0c\"H\n\x0c\x44\x65\x63odeOutput\x12\x0b\n\x03uid\x18\x01 \x01(\t\x12\x0b\n\x03seq\x18\x02 \x01(\x05\x12\x10\n\x08\x66inished\x18\x03 \x01(\x08\x12\x0c\n\x04text\x18\x04 \x01(\t\"8\n\x0b\x42yte_Stream\x12\x0f\n\x07\x62stream\x18\x01 \x01(\x0c\x12\x0b\n\x03\x65os\x18\x02 \x01(\x08\x12\x0b\n\x03uid\x18\x03 \x01(\x05\"H\n\x0cTrans_Stream\x12\x0f\n\x07tstream\x18\x01 \x01(\t\x12\r\n\x05start\x18\x02 \x01(\x05\x12\x0b\n\x03\x65nd\x18\x03 \x01(\x05\x12\x0b\n\x03uid\x18\x04 \x01(\x05\x32R\n\x0f\x65\x63ho_bytestream\x12?\n\x06Search\x12\x17.wav2letter.Byte_Stream\x1a\x18.wav2letter.Trans_Stream(\x01\x30\x01\x32\x9e\x01\n\x0bTranscriber\x12\x45\n\x0c\x44\x65\x63odeStream\x12\x17.wav2letter.DecodeInput\x1a\x18.wav2letter.DecodeOutput(\x01\x30\x01\x12H\n\x0f\x44\x65\x63odeUtterance\x12\x17.wav2letter.DecodeInput\x1a\x18.wav2letter.DecodeOutput(\x01\x30\x01\x62\x06proto3'
 )
 
 
+
+
+_DECODEINPUT = _descriptor.Descriptor(
+  name='DecodeInput',
+  full_name='wav2letter.DecodeInput',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='uid', full_name='wav2letter.DecodeInput.uid', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='seq', full_name='wav2letter.DecodeInput.seq', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='finished', full_name='wav2letter.DecodeInput.finished', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='audio', full_name='wav2letter.DecodeInput.audio', index=3,
+      number=4, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=32,
+  serialized_end=104,
+)
+
+
+_DECODEOUTPUT = _descriptor.Descriptor(
+  name='DecodeOutput',
+  full_name='wav2letter.DecodeOutput',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='uid', full_name='wav2letter.DecodeOutput.uid', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='seq', full_name='wav2letter.DecodeOutput.seq', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='finished', full_name='wav2letter.DecodeOutput.finished', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='text', full_name='wav2letter.DecodeOutput.text', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=106,
+  serialized_end=178,
+)
 
 
 _BYTE_STREAM = _descriptor.Descriptor(
@@ -48,7 +154,7 @@ _BYTE_STREAM = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='unique_id', full_name='wav2letter.Byte_Stream.unique_id', index=2,
+      name='uid', full_name='wav2letter.Byte_Stream.uid', index=2,
       number=3, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -66,8 +172,8 @@ _BYTE_STREAM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=32,
-  serialized_end=94,
+  serialized_start=180,
+  serialized_end=236,
 )
 
 
@@ -100,6 +206,13 @@ _TRANS_STREAM = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='uid', full_name='wav2letter.Trans_Stream.uid', index=3,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -112,13 +225,29 @@ _TRANS_STREAM = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=96,
-  serialized_end=155,
+  serialized_start=238,
+  serialized_end=310,
 )
 
+DESCRIPTOR.message_types_by_name['DecodeInput'] = _DECODEINPUT
+DESCRIPTOR.message_types_by_name['DecodeOutput'] = _DECODEOUTPUT
 DESCRIPTOR.message_types_by_name['Byte_Stream'] = _BYTE_STREAM
 DESCRIPTOR.message_types_by_name['Trans_Stream'] = _TRANS_STREAM
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+DecodeInput = _reflection.GeneratedProtocolMessageType('DecodeInput', (_message.Message,), {
+  'DESCRIPTOR' : _DECODEINPUT,
+  '__module__' : 'wav2letter_pb2'
+  # @@protoc_insertion_point(class_scope:wav2letter.DecodeInput)
+  })
+_sym_db.RegisterMessage(DecodeInput)
+
+DecodeOutput = _reflection.GeneratedProtocolMessageType('DecodeOutput', (_message.Message,), {
+  'DESCRIPTOR' : _DECODEOUTPUT,
+  '__module__' : 'wav2letter_pb2'
+  # @@protoc_insertion_point(class_scope:wav2letter.DecodeOutput)
+  })
+_sym_db.RegisterMessage(DecodeOutput)
 
 Byte_Stream = _reflection.GeneratedProtocolMessageType('Byte_Stream', (_message.Message,), {
   'DESCRIPTOR' : _BYTE_STREAM,
@@ -143,8 +272,8 @@ _ECHO_BYTESTREAM = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=157,
-  serialized_end=239,
+  serialized_start=312,
+  serialized_end=394,
   methods=[
   _descriptor.MethodDescriptor(
     name='Search',
@@ -160,5 +289,41 @@ _ECHO_BYTESTREAM = _descriptor.ServiceDescriptor(
 _sym_db.RegisterServiceDescriptor(_ECHO_BYTESTREAM)
 
 DESCRIPTOR.services_by_name['echo_bytestream'] = _ECHO_BYTESTREAM
+
+
+_TRANSCRIBER = _descriptor.ServiceDescriptor(
+  name='Transcriber',
+  full_name='wav2letter.Transcriber',
+  file=DESCRIPTOR,
+  index=1,
+  serialized_options=None,
+  create_key=_descriptor._internal_create_key,
+  serialized_start=397,
+  serialized_end=555,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='DecodeStream',
+    full_name='wav2letter.Transcriber.DecodeStream',
+    index=0,
+    containing_service=None,
+    input_type=_DECODEINPUT,
+    output_type=_DECODEOUTPUT,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='DecodeUtterance',
+    full_name='wav2letter.Transcriber.DecodeUtterance',
+    index=1,
+    containing_service=None,
+    input_type=_DECODEINPUT,
+    output_type=_DECODEOUTPUT,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+])
+_sym_db.RegisterServiceDescriptor(_TRANSCRIBER)
+
+DESCRIPTOR.services_by_name['Transcriber'] = _TRANSCRIBER
 
 # @@protoc_insertion_point(module_scope)
