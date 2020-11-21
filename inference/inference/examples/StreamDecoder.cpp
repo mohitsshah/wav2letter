@@ -121,7 +121,7 @@ class TranscriberImpl final : public Transcriber::Service {
       constexpr const int lookBack = 0;
       constexpr const float kMaxUint16 = static_cast<float>(0x8000);
       constexpr const int kAudioWavSamplingFrequency = 16000; // 16KHz audio.
-      constexpr const int kChunkSizeMsec = 500;
+      constexpr const int kChunkSizeMsec = 512;
 
       const int minChunkSize =
           kChunkSizeMsec * kAudioWavSamplingFrequency / 1000;

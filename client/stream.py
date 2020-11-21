@@ -13,7 +13,7 @@ import threading
 logging.basicConfig(level=logging.INFO)
 
 SERVER_URL = 'localhost:50051'
-NUM_BYTES = 16000
+NUM_BYTES = 16384
 
 def generate_msg(stub, audio_path):
     def thread_function(stream):
